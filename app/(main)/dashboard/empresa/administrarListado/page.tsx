@@ -1,8 +1,13 @@
-export default function Page() {
+'use client';
 
+import EmpresaListado from '@/modules/empresa/components/EmpresaListado';
+
+export default function Page() {
     return (
         <div className="grid">
-            Empresa
+            <div className="col-12">
+                <EmpresaListado />
+            </div>
         </div>
     );
 }
