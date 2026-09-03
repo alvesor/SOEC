@@ -7,7 +7,7 @@ import { ROLES } from '@/modules/empresa/constants';
 import type { ResponsableItem } from '@/modules/empresa/types/empresa.types';
 
 // Ajusta si el nodo raíz en `catalogo` tiene otro nombre exacto
-const NOMBRE_RAIZ_TIPO_IDENTIFICACION = 'Tipo de Identificación';
+const ID_CATALOGO_TIPO_IDENTIFICACION = 2;
 
 export async function buscarUsuarios(texto: string): Promise<UsuarioBusqueda[]> {
     if (!texto || texto.trim().length < 2) return [];
@@ -30,11 +30,7 @@ export async function buscarUsuarios(texto: string): Promise<UsuarioBusqueda[]> 
 }
 
 export async function cargarTiposIdentificacion(): Promise<TipoIdentificacion[]> {
-    const { data: raiz, error: errorRaiz } = await obtenerRaizCatalogoPorNombre(NOMBRE_RAIZ_TIPO_IDENTIFICACION);
-    if (errorRaiz) throw errorRaiz;
-    if (!raiz) return [];
-
-    const { data, error } = await obtenerCatalogoPorPadre(raiz.id_catalogo);
+    const { data, error } = await obtenerCatalogoPorPadre(ID_CATALOGO_TIPO_IDENTIFICACION);
     if (error) throw error;
     return data ?? [];
 }

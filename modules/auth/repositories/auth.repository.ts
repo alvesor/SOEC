@@ -9,8 +9,7 @@ export async function obtenerUsuarioPorIdentificacion(identificacion: string) {
             clave,
             es_activo,
             id_persona,
-
-            persona (
+            persona!inner (
                 id_persona,
                 identificacion,
                 nombres,
