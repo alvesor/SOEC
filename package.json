@@ -17,6 +17,7 @@
     "bcryptjs": "^3.0.3",
     "browser-image-compression": "^2.0.2",
     "chart.js": "4.2.1",
+    "exceljs": "^4.4.0",
     "next": "13.4.8",
     "next-auth": "^4.24.14",
     "primeflex": "^3.3.1",
