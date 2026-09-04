@@ -2,7 +2,7 @@ import { NextAuthOptions } from 'next-auth';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { loginUsuario } from '@/modules/auth/services/auth.service';
+import { loginUsuario, cambiarEmpresaActiva } from '@/modules/auth/services/auth.service';
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -49,8 +49,20 @@ export const authOptions: NextAuthOptions = {
                 token.empresa_activa = user.empresa_activa;
             }
 
-            if (trigger === 'update') {
-                token.empresa_activa = session.empresa_activa;
+            /*
+             * Cambio de empresa activa: se valida y se
+             * recalculan permisos en el servidor, nunca
+             * se confía en lo que manda el cliente.
+             */
+
+            if (trigger === 'update' && session?.id_empresa) {
+                const resultado = await cambiarEmpresaActiva(token.id_usuario as number, session.id_empresa);
+
+                if (resultado) {
+                    token.empresa_activa = resultado.empresa_activa;
+
+                    token.permisos = resultado.permisos;
+                }
             }
 
             return token;

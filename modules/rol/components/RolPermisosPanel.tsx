@@ -145,6 +145,8 @@ const RolPermisosPanel = () => {
                         <div className="flex justify-content-center py-6">
                             <ProgressSpinner style={{ width: '48px', height: '48px' }} strokeWidth="4" />
                         </div>
+                    ) : arbolMenu.length === 0 ? (
+                        <div className="text-center text-color-secondary py-4">No hay ventanas configuradas.</div>
                     ) : (
                         <Tree
                             value={arbolMenu}
@@ -154,7 +156,6 @@ const RolPermisosPanel = () => {
                             filter
                             filterMode="lenient"
                             filterPlaceholder="Buscar ventana..."
-                            emptyMessage="No hay ventanas configuradas."
                             className={classNames('w-full border-none p-0', { 'opacity-60 pointer-events-none': !rolActivo })}
                         />
                     )}

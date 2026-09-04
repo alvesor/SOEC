@@ -54,8 +54,8 @@ const [empresaSeleccionada, setEmpresaSeleccionada] =
 
     await update({
 
-        empresa_activa:
-            empresaSeleccionada
+        id_empresa:
+            empresaSeleccionada.id_empresa
     });
 
     /*
